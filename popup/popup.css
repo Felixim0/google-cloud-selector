@@ -1,0 +1,21 @@
+body {
+    margin: 0;
+    height: 100vh;
+    display: flex;
+    justify-content: center;
+    align-items: center;
+    font-family: Arial, sans-serif;
+}
+
+.centered-box {
+    text-align: center;
+    border: 1px solid #ddd;
+    padding: 20px;
+    box-shadow: 0px 0px 10px #aaa;
+}
+
+.input-field {
+    margin-top: 10px;
+    margin-bottom: 20px;
+    font-size: 1em;
+}
