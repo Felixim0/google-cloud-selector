@@ -1,3 +1,9 @@
+chrome.runtime.onMessage.addListener(function(request, sender, sendResponse) {
+    if (request.action === "reloadPage") {
+        window.location.reload();
+    }
+});
+
 chrome.storage.local.get('accountNumber', function(data) {
     const currentURL = window.location.href;
     const selectedAccountNumber = data.accountNumber;
