@@ -9,8 +9,14 @@ chrome.storage.local.get(['accountNumber', 'enabledStatus'], function(data) {
     const selectedAccountNumber = data.accountNumber;
     const enabled = data.enabledStatus;
 
-    // Only if toggled on
-    if (enabled) {
+    // Split the URL to get the part before query parameters
+    const urlBeforeParameters = currentURL.split('?')[0];
+
+    // Check if the URL contains 'google' and 'cloud' before the query parameters
+    const isCorrectURL = urlBeforeParameters.includes('google') && urlBeforeParameters.includes('cloud');
+
+    // Only if toggled on and the URL contains 'google' and 'cloud'
+    if (enabled && isCorrectURL) {
       // Check if an account number has been set
       if (!selectedAccountNumber) {
           console.log('No account number set. Doing nothing.');
@@ -20,7 +26,7 @@ chrome.storage.local.get(['accountNumber', 'enabledStatus'], function(data) {
       if (currentURL.includes("authuser=") && !currentURL.includes(`authuser=${selectedAccountNumber}`)) {
           // Replace "authuser=XX" with the selected account number
           const urlWithUpdatedUser = currentURL.replace(/authuser=\d+/, `authuser=${selectedAccountNumber}`);
-          window.location.href = urlWithUpdatedUser; 
+          window.location.href = urlWithUpdatedUser;
       }
     }
 });
