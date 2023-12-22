@@ -3,6 +3,7 @@
 <head>
     <title>Select an Account Number</title>
     <link rel="stylesheet" type="text/css" href="popup.css">
+    <link rel="stylesheet" type="text/css" href="animations.css">
 </head>
 <body>
     <div class="centered-box">
@@ -10,6 +11,21 @@
         <label for="accountNumber">Account Number:</label>
         <input type="text" id="accountNumber" autocomplete="off" class="input-field">
         <button id="enterButton">Enter</button>
+
+        <div id="toggleAndLabelContainer">
+
+          <div class="toggle-wrapper">
+            <input type="checkbox" id="toggle-switch" class="toggle-input">
+            <label for="toggle-switch" class="toggle-label"></label>
+          </div>
+
+          <div class="labelContainer">
+            <label id="enabledLabel">Enabled</label>
+          </div>
+
+        </div>
+
+
     </div>
     <script src="popup.js"></script>
 </body>

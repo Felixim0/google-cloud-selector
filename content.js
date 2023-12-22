@@ -4,20 +4,24 @@ chrome.runtime.onMessage.addListener(function(request, sender, sendResponse) {
     }
 });
 
-chrome.storage.local.get('accountNumber', function(data) {
+chrome.storage.local.get(['accountNumber', 'enabledStatus'], function(data) {
     const currentURL = window.location.href;
     const selectedAccountNumber = data.accountNumber;
+    const enabled = data.enabledStatus;
 
-    // Check if an account number has been set
-    if (!selectedAccountNumber) {
-        console.log('No account number set. Doing nothing.');
-        return; // Exit the function if no account number is set
-    }
+    // Only if toggled on
+    if (enabled) {
+      // Check if an account number has been set
+      if (!selectedAccountNumber) {
+          console.log('No account number set. Doing nothing.');
+          return; // Exit the function if no account number is set
+      }
 
-    if (currentURL.includes("authuser=") && !currentURL.includes(`authuser=${selectedAccountNumber}`)) {
-        // Replace "authuser=XX" with the selected account number
-        const urlWithUpdatedUser = currentURL.replace(/authuser=\d+/, `authuser=${selectedAccountNumber}`);
-        window.location.href = urlWithUpdatedUser; 
+      if (currentURL.includes("authuser=") && !currentURL.includes(`authuser=${selectedAccountNumber}`)) {
+          // Replace "authuser=XX" with the selected account number
+          const urlWithUpdatedUser = currentURL.replace(/authuser=\d+/, `authuser=${selectedAccountNumber}`);
+          window.location.href = urlWithUpdatedUser; 
+      }
     }
 });
 
