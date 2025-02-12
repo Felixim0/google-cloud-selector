@@ -11,7 +11,7 @@ function checkStopConditionsMet(enabled, urlBeforeParameters, selectedAccountNum
     if (!enabled) { stopConditionMet = true; }
 
     // Stop if not on a Google Cloud URL (h)
-    const isCorrectURL = urlBeforeParameters.includes('google') && urlBeforeParameters.includes('cloud');
+    const isCorrectURL = urlBeforeParameters.includes('cloud.google.com');
     if (!isCorrectURL) { stopConditionMet = true; }
  
     // Check if an account number has been set
