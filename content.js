@@ -5,7 +5,7 @@ chrome.runtime.onMessage.addListener(function(request, sender, sendResponse) {
 });
 
 function checkStopConditionsMet(enabled, urlBeforeParameters, selectedAccountNumber) {
-    const stopConditionMet = false;
+    let stopConditionMet = false;
 
     // Stop if disabled
     if (!enabled) { stopConditionMet = true; }
@@ -20,6 +20,7 @@ function checkStopConditionsMet(enabled, urlBeforeParameters, selectedAccountNum
     // If the current url includes "authuser={selectedAccountNumber}" then stop
     if (window.location.href.includes(`authuser=${selectedAccountNumber}`)) { stopConditionMet = true; }
 
+    return stopConditionMet;
 }
 
 chrome.storage.local.get(['accountNumber', 'enabledStatus'], function(data) {
