@@ -1,12 +1,18 @@
 {
-  "manifest_version": 2,
+  "manifest_version": 3,
   "name": "Cloud Unifier",
-  "version": "1.0",
+  "version": "1.1",
   "description": "Enforce Google Ids accross Google Cloud links",
   "permissions": [
-    "tabs", "<all_urls>", "storage", "activeTab"
+    "tabs", "storage", "activeTab", "scripting"
   ],
-  "browser_action": {
+  "host_permissions": [
+    "<all_urls>"
+  ],
+  "background": {
+    "service_worker": "service-worker.js"
+  },
+  "action": {
     "default_popup": "popup/popup.html",
     "default_icon": "icon.png"
   },
